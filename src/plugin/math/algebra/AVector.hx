@@ -8,21 +8,24 @@ import plugin.core.interfaces.IEquatable;
  * ...
  * @author Gary Paluk
  */
-class AVector implements IClonable, implements IEquatable, implements IDisposable
+class AVector implements IClonable
 {
 	
 	/**
-	 * The first element of an <code>AVector</code> Object, such as the <code>x</code> coordinate of a point in the three-dimensional space.
+	 * The first element of an <code>AVector</code> Object, such as the <code>x</code> coordinate of a point 
+	 * in the three-dimensional space.
 	 */
 	public var x: Float;
 	
 	/**
-	 * The second element of an <code>AVector</code> Object, such as the <code>y</code> coordinate of a point in the three-dimensional space.
+	 * The second element of an <code>AVector</code> Object, such as the <code>y</code> coordinate of a point 
+	 * in the three-dimensional space.
 	 */
 	public var y: Float;
 	
 	/**
-	 * The second element of an <code>AVector</code> Object, such as the <code>z</code> coordinate of a point in the three-dimensional space.
+	 * The second element of an <code>AVector</code> Object, such as the <code>z</code> coordinate of a point 
+	 * in the three-dimensional space.
 	 */
 	public var z: Float;
 	
@@ -46,6 +49,13 @@ class AVector implements IClonable, implements IEquatable, implements IDisposabl
 	/**
 	 * @inheritDoc
 	 */
+	public function dispose(): Void
+	{
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
 	public function clone(): AVector
 	{
 		return new AVector( x, y, z );
@@ -64,11 +74,9 @@ class AVector implements IClonable, implements IEquatable, implements IDisposabl
 		return ( x == v.x && y == v.y && z == v.z );
 	}
 	
-	/**
-	 * @inheritDoc
-	 */
-	public function dispose(): Void
+	@:op(A + B) static public inline function add( v0:AVector, v1:AVector): AVector
 	{
+		return new AVector( v0.x + v1.x, v0.y + v1.y, v0.z + v1.z );
 	}
 	
 	/**
