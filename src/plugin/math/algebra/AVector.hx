@@ -74,11 +74,6 @@ class AVector implements IClonable
 		return ( x == v.x && y == v.y && z == v.z );
 	}
 	
-	@:op(A + B) static public inline function add( v0:AVector, v1:AVector): AVector
-	{
-		return new AVector( v0.x + v1.x, v0.y + v1.y, v0.z + v1.z );
-	}
-	
 	/**
 	 * The fourth element of an <code>AVector</code> Object (in addition to the <code>x</code>, <code>y</code>, and <code>z</code> properties).
 	 * The <code>w</code> parameter is used to hold data such as the angle of rotation.
