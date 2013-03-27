@@ -89,3 +89,30 @@ class AVector implements IClonable
 	}
 	
 }
+
+abstract MyVector(AVector) from AVector to AVector {
+	@:op(A + B) static public inline function add(lhs:MyVector, rhs:MyVector):MyVector {
+		return new AVector(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
+	}
+
+	@:op(A *= B) static public inline function scalarAssign(lhs:MyVector, rhs:Float):MyVector {
+		lhs.x *= rhs;
+		lhs.y *= rhs;
+		lhs.z *= rhs;
+		return lhs;
+	}
+
+	@:op(A * B) static public inline function scalar(lhs:MyVector, rhs:Float):AVector {
+		return new AVector(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+	}
+	
+	@:op(-A) static public inline function invert(t:MyVector):MyVector {
+		return new AVector( -t.x, -t.y, -t.z);
+	}
+	
+	public inline function get():AVector
+		return this;
+
+	@:to public inline function toString():String
+		return untyped '(${this.x},${this.y},${this.z})';
+}
